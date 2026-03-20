@@ -1,0 +1,52 @@
+city,country,continent,lat,lng,population,area,rank,is_capital
+Tokyo,Japan,Asia,35.6895,139.6917,37400068,2194,1,true
+Delhi,India,Asia,28.7041,77.1025,28514000,1484,2,true
+Shanghai,China,Asia,31.2304,121.4737,25582000,6340.5,3,false
+Sao Paulo,Brazil,South America,-23.5505,-46.6333,21846507,1521,4,false
+Mumbai,India,Asia,19.0760,72.8777,22186000,,5,false
+Mexico City,Mexico,North America,19.4326,-99.1332,21581000,,6,true
+Beijing,China,Asia,39.9042,116.4074,21542000,,7,true
+Dhaka,Bangladesh,Asia,23.8103,90.4125,21070000,,8,true
+Osaka,Japan,Asia,34.6937,135.5023,19281000,,9,false
+New York,United States,North America,40.7128,-74.0060,18804000,,10,false
+Toronto,Canada,North America,43.6532,-79.3832,2930000,630,0,false
+Karachi,Pakistan,Asia,24.8607,67.0011,15400000,,11,false
+Buenos Aires,Argentina,South America,-34.6037,-58.3816,15200000,,12,true
+Chongqing,China,Asia,29.4316,106.9123,15000000,,13,false
+Istanbul,Turkey,Europe,41.0082,28.9784,14970000,,14,false
+Kolkata,India,Asia,22.5726,88.3639,14667000,,15,false
+Manila,Philippines,Asia,14.5995,120.9842,13482000,,16,true
+Lagos,Nigeria,Africa,6.5244,3.3792,13474000,,17,false
+Rio de Janeiro,Brazil,South America,-22.9068,-43.1729,13458000,,18,false
+Tianjin,China,Asia,39.3434,117.3616,13245000,,19,false
+Kinshasa,DR Congo,Africa,-4.4419,15.2663,12972000,,20,true
+Guangzhou,China,Asia,23.1291,113.2644,12601000,,21,false
+Los Angeles,United States,North America,34.0522,-118.2437,12410000,,22,false
+Moscow,Russia,Europe,55.7558,37.6173,12380000,,23,true
+Shenzhen,China,Asia,22.5431,114.0579,12150000,,24,false
+Lahore,Pakistan,Asia,31.5546,74.3572,11880000,,25,false
+Bangalore,India,Asia,12.9716,77.5946,11810000,,26,false
+Paris,France,Europe,48.8566,2.3522,11020000,,27,true
+Bogota,Colombia,South America,4.7110,-74.0721,10740000,,28,true
+Jakarta,Indonesia,Asia,-6.2088,106.8456,10400000,,29,true
+Chennai,India,Asia,13.0827,80.2707,10370000,,30,false
+Lima,Peru,South America,-12.0464,-77.0428,10120000,,31,true
+Bangkok,Thailand,Asia,13.7563,100.5018,10100000,,32,true
+Seoul,South Korea,Asia,37.5665,126.9780,9930000,,33,true
+Nagoya,Japan,Asia,35.1815,136.9066,9120000,,34,false
+Hyderabad,India,Asia,17.3850,78.4867,9100000,,35,false
+London,United Kingdom,Europe,51.5074,-0.1278,8982000,,36,true
+Tehran,Iran,Asia,35.6892,51.3890,8846000,,37,true
+Chicago,United States,North America,41.8781,-87.6298,8606000,,38,false
+Chengdu,China,Asia,30.5728,104.0668,8298000,,39,false
+Nanjing,China,Asia,32.0603,118.7969,8270000,,40,false
+Wuhan,China,Asia,30.5928,114.3055,8200000,,41,false
+Ho Chi Minh City,Vietnam,Asia,10.8231,106.6297,8141000,,42,false
+Luanda,Angola,Africa,-8.8390,13.2894,8095000,,43,true
+Ahmedabad,India,Asia,23.0225,72.5714,7930000,,44,false
+Kuala Lumpur,Malaysia,Asia,3.1390,101.6869,7900000,,45,true
+Xi'an,China,Asia,34.3416,108.9398,7810000,,46,false
+Hong Kong,Hong Kong,Asia,22.3193,114.1694,7500000,,47,false
+Dongguan,China,Asia,23.0207,113.7518,7280000,,48,false
+Hangzhou,China,Asia,30.2741,120.1551,7130000,,49,false
+Miami,United States,North America,25.7617,-80.1918,6920000,,50,false
