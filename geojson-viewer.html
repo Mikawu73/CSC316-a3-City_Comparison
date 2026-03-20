@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>City GeoJSON Viewer</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    body { font-family: sans-serif; margin: 0; padding: 1rem; background: #f9fafb; }
+    #viewer { width: 100%; max-width: 960px; margin: auto; border: 1px solid #ddd; background: white; }
+    .controls { margin-bottom: .75rem; }
+    .geo-outline { fill: rgba(30, 100, 210, 0.35); stroke: #1e3a8a; stroke-width: 1.5px; }
+    .geo-outline.highlight { fill: rgba(220,50,50,0.3); stroke: #991b1b; stroke-width: 1.5px; }
+  </style>
+</head>
+<body>
+  <h2>City GeoJSON Viewer</h2>
+  <div class="controls">
+    <label for="city">City:&nbsp;</label>
+    <select id="city"><option value="">Loading cities...</option></select>
+    <button id="reset">Reset</button>
+  </div>
+  <svg id="viewer" width="900" height="520"></svg>
+
+  <script>
+    const svg = d3.select('#viewer');
+    const citySel = d3.select('#city');
+    const resetBtn = d3.select('#reset');
+    let cityOptions = [];
+
+    const projection = d3.geoMercator();
+    const path = d3.geoPath().projection(projection);
+
+    function centroidOfFeature(feature) {
+      if (!feature || !feature.geometry) return null;
+      const geom = feature.geometry;
+      let points = [];
+      if (geom.type === 'Polygon') {
+        points = geom.coordinates[0] || [];
+      } else if (geom.type === 'MultiPolygon') {
+        geom.coordinates.forEach(polygon => {
+          if (polygon && polygon[0]) points = points.concat(polygon[0]);
+        });
+      }
+      if (!points.length) return null;
+      const sum = points.reduce((acc, pt) => ({ x: acc.x + pt[0], y: acc.y + pt[1] }), { x: 0, y: 0 });
+      return { x: sum.x / points.length, y: sum.y / points.length };
+    }
+
+    function dist2(a, b) {
+      return (a.x - b.x) ** 2 + (a.y - b.y) ** 2;
+    }
+
+    function renderCity(idx) {
+      svg.selectAll('path').remove();
+      svg.selectAll('text.city-label').remove();
+      const option = cityOptions[idx];
+      if (!option || !option.feature) return;
+
+      const fc = { type: 'FeatureCollection', features: [option.feature] };
+      projection.fitSize([+svg.attr('width'), +svg.attr('height')], fc);
+
+      svg.append('path')
+        .datum(option.feature)
+        .attr('class', 'geo-outline')
+        .attr('d', path);
+
+      svg.append('text')
+        .attr('class', 'city-label')
+        .attr('x', +svg.attr('width') / 2)
+        .attr('y', 20)
+        .attr('text-anchor', 'middle')
+        .attr('font-weight', '700')
+        .text(`${option.csv.city}, ${option.csv.country}`);
+    }
+
+    Promise.all([
+      d3.csv('data/cities.csv'),
+      d3.json('data/cities.geojson')
+    ]).then(([csvData, geojson]) => {
+      const geoFeatures = (geojson.features || []).filter(f => f && f.geometry);
+
+      const featureByName = {};
+      geoFeatures.forEach(f => {
+        const name = (f.properties.city || f.properties.NAME || '').toString().trim().toLowerCase();
+        if (!name) return;
+        featureByName[name] = featureByName[name] || [];
+        const centroid = centroidOfFeature(f);
+        if (centroid) f.__centroid = centroid;
+        featureByName[name].push(f);
+      });
+
+      cityOptions = csvData
+        .filter(row => row.city)
+        .map(row => {
+          const cityName = row.city.toString().trim();
+          const key = cityName.toLowerCase();
+          let selectedFeature = null;
+
+          if (featureByName[key]) {
+            const rowCenter = { x: +row.lng, y: +row.lat };
+            let minD = Infinity;
+            featureByName[key].forEach(f => {
+              if (!f.__centroid) return;
+              const d = dist2(f.__centroid, rowCenter);
+              if (d < minD) {
+                minD = d;
+                selectedFeature = f;
+              }
+            });
+          }
+
+          return { csv: row, feature: selectedFeature };
+        })
+        .filter(item => item.feature);
+
+      citySel.selectAll('option').remove();
+      citySel.append('option').attr('value', '').text('-- select city --');
+      cityOptions.forEach((item, idx) => {
+        citySel.append('option')
+          .attr('value', idx)
+          .text(`${item.csv.city}, ${item.csv.country}`);
+      });
+
+      citySel.on('change', function () {
+        const val = this.value;
+        renderCity(val ? +val : null);
+      });
+
+      resetBtn.on('click', () => {
+        citySel.property('value', '');
+        renderCity(null);
+      });
+    }).catch((err) => {
+      console.error('Load failed', err);
+      citySel.selectAll('option').remove();
+      citySel.append('option').attr('value', '').text('Error loading data');
+    });
+  </script>
+</body>
+</html>

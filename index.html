@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>World City Comparison</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="hero">
+      <h1>World City Comparison</h1>
+      <p>Compare population size across cities with overlapping circles. Select up to three cities.</p>
+    </header>
+
+    <section class="controls" aria-label="Chart controls">
+      <div class="control-row">
+        <div class="control-group">
+          <label for="city1">City 1</label>
+          <select id="city1" class="city-select"></select>
+        </div>
+        <div class="control-group">
+          <label for="city2">City 2</label>
+          <select id="city2" class="city-select"></select>
+        </div>
+      </div>
+
+      <div class="control-row">
+        <div class="control-group metric-group">
+          <label for="metric">Metric</label>
+          <select id="metric">
+            <option value="population">Population</option>
+            <option value="density">Density (future)</option>
+            <option value="area" selected>Area (future)</option>
+          </select>
+        </div>
+
+        <button id="resetBtn" type="button" class="btn">Reset to defaults</button>
+      </div>
+    </section>
+
+    <section class="visualization">
+      <div class="vis-top">
+        <svg id="cityChart" viewBox="0 0 900 520" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Overlapping city population circles"></svg>
+      </div>
+      <div class="legend">Skyline height = population. Hover on blocks for details; click city card to pin.</div>
+    </section>
+
+    <section id="detailsPanel" class="details-panel" aria-label="Selected city details">
+      <h2>City comparison details</h2>
+      <p id="emptyState" class="empty-state">Select two or three cities to see exact values. Use reset for default comparison.</p>
+      <div id="detailsContent" class="details-content"></div>
+    </section>
+
+    <div id="tooltip" class="tooltip" role="tooltip" aria-hidden="true"></div>
+  </main>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

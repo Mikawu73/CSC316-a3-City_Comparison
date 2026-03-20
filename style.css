@@ -1,0 +1,193 @@
+:root {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --primary: #0f766e;
+  --accent1: #1d4ed8;
+  --accent2: #dc2626;
+  --accent3: #16a34a;
+  --border: #e5e7eb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.app-shell {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+}
+
+.hero h1 {
+  margin: 0;
+  color: var(--primary);
+  font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+}
+
+.hero p {
+  color: var(--muted);
+  margin: 8px 0 20px;
+  max-width: 760px;
+  line-height: 1.5;
+}
+
+.controls {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+}
+
+.control-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 160px;
+  flex: 1;
+}
+
+.control-group label {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+select,
+.btn {
+  padding: 9px 11px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+select:focus,
+.btn:focus {
+  outline: 2px solid rgba(14, 165, 233, 0.35);
+}
+
+.btn {
+  color: #fff;
+  background: var(--primary);
+  border-color: transparent;
+  font-weight: 600;
+  cursor: pointer;
+  align-self: flex-end;
+  max-height: 40px;
+}
+
+.visualization {
+  margin-top: 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.vis-top {
+  width: 100%;
+  height: 520px;
+}
+
+svg {
+  width: 100%;
+  height: 100%;
+}
+
+.legend {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.details-panel {
+  margin-top: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.details-panel h2 {
+  margin-top: 0;
+}
+
+.empty-state {
+  margin: 8px 0 12px;
+  color: var(--muted);
+}
+
+.details-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.city-card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+  background: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.city-card.pinned {
+  border-color: var(--accent1);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
+}
+
+.city-card h3 {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+}
+
+.city-card p {
+  margin: 3px 0;
+  color: var(--muted);
+  line-height: 1.3;
+}
+
+.description {
+  font-size: 0.92rem;
+}
+
+.tooltip {
+  position: fixed;
+  pointer-events: none;
+  z-index: 100;
+  background: rgba(15, 23, 42, 0.93);
+  color: #fff;
+  padding: 8px 10px;
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.25);
+  font-size: 0.85rem;
+  line-height: 1.3;
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .control-row {
+    flex-direction: column;
+  }
+
+  .vis-top {
+    height: 420px;
+  }
+}
