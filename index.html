@@ -11,8 +11,21 @@
   <main class="app-shell">
     <header class="hero">
       <h1>World City Comparison</h1>
-      <p>Compare population size across cities with overlapping circles. Select up to three cities.</p>
+      <p>See city differences in a more intuitive way.</p>
     </header>
+
+    <section class="story" aria-label="Project story">
+      <h2>Why This Visualization</h2>
+      <p>
+        After arriving in Toronto, I became curious about how different the city felt from my hometown, Shanghai.
+        One of the first things I noticed was that Toronto's public transportation network seemed much smaller.
+      </p>
+      <p>
+        But when I searched for Toronto and Shanghai on Google Maps and inspect their datas, including area and population,
+        it was not easy to directly see the difference. That gap between lived experience and what the map showed me is why
+        I decided to build this visualization: to present differences across cities in a more intuitive way.
+      </p>
+    </section>
 
     <section class="controls" aria-label="Chart controls">
       <div class="control-row">
@@ -31,8 +44,7 @@
           <label for="metric">Metric</label>
           <select id="metric">
             <option value="population">Population</option>
-            <option value="density">Density (future)</option>
-            <option value="area" selected>Area (future)</option>
+            <option value="area" selected>Area</option>
           </select>
         </div>
 

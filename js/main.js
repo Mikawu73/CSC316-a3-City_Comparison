@@ -17,6 +17,7 @@ const metricSelect = document.getElementById("metric");
 const resetBtn = document.getElementById("resetBtn");
 const detailsContent = document.getElementById("detailsContent");
 const emptyState = document.getElementById("emptyState");
+const legend = document.querySelector(".legend");
 
 let cityData = [];
 let boundaryMap = new Map();
@@ -178,6 +179,8 @@ function refreshView() {
   const selected = getSelectedCities();
   const metric = metricSelect.value;
 
+  updateLegend(metric);
+
   if (!selected.length) {
     emptyState.style.display = "block";
     detailsContent.innerHTML = "";
@@ -188,6 +191,22 @@ function refreshView() {
   emptyState.style.display = "none";
   chart.update(selected, metric, pinnedCity, boundaryMap);
   renderDetailsPanel(selected, pinnedCity);
+}
+
+function updateLegend(metric) {
+  if (!legend) return;
+
+  if (metric === "area") {
+    legend.textContent = "Area view overlays city footprints to compare land size directly.";
+    return;
+  }
+
+  if (metric === "population") {
+    legend.textContent = "Population view: 1 person icon = 100,000 residents. Switching from area breaks each city map into people-shaped units.";
+    return;
+  }
+
+  legend.textContent = "Metric view compares exact values side by side. Hover for details; click a city shape or icon to pin.";
 }
 
 function renderDetailsPanel(selectedCities, pinned) {
