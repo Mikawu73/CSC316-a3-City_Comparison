@@ -57,6 +57,31 @@
         <svg id="cityChart" viewBox="0 0 900 520" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Overlapping city population circles"></svg>
       </div>
       <div class="legend">Skyline height = population. Hover on blocks for details; click city card to pin.</div>
+      <div class="sources" aria-label="Visualization sources">
+        <h2>Acknowledgements</h2>
+        <p>
+          This project uses publicly available datasets and tools.
+        </p>
+        <ul class="source-list">
+          <li>
+            City boundary data was obtained from the GitHub repository
+            <a href="https://github.com/drei01/geojson-world-cities" target="_blank" rel="noreferrer">geojson-world-cities</a>
+            and is used in <code>cities.geojson</code>.
+          </li>
+          <li>
+            City population data was sourced from open datasets on Kaggle and is used in <code>cities.csv</code>.
+          </li>
+          <li>
+            The visualization was implemented using
+            <a href="https://d3js.org/" target="_blank" rel="noreferrer">D3.js</a>.
+          </li>
+        </ul>
+        <p>
+          During development, I used a large language model (ChatGPT) to assist with debugging, structuring D3 code, and
+          refining interaction design. All outputs were reviewed and modified to ensure correctness and alignment with the
+          project goals.
+        </p>
+      </div>
     </section>
 
     <section id="detailsPanel" class="details-panel" aria-label="Selected city details">
